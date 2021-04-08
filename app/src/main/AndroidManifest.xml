@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RUCafe">
         <activity android:name=".DonutOrderActivity" android:label="@string/donut_activity_title"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".StoredOrdersActivity"
             android:label="@string/stored_orders_activity_title"
             android:parentActivityName=".MainActivity"/>
