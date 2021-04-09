@@ -1,13 +1,17 @@
 package com.example.rucafe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rucafe.Model.Donut;
 import com.example.rucafe.Model.Order;
 
 import java.text.DecimalFormat;
@@ -19,6 +23,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private TextView subTotal, salesTax, totalPrice;
     private Button removeItem, placeOrder;
     private RecyclerView currentOrderListView;
+    private CurrentOrderAdapter currentOrderAdapter;
+    private RecyclerView.LayoutManager currentOrderLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +35,22 @@ public class CurrentOrderActivity extends AppCompatActivity {
         totalPrice = findViewById(R.id.totalPriceCurrentOrder);
         removeItem = findViewById(R.id.removeItemOrder);
         placeOrder = findViewById(R.id.placeOrder);
+        currentOrderListView = findViewById(R.id.currentOrderListView);
+        currentOrder.add(new Donut("Yeast Donut Glazed",20));
+        currentOrder.add(new Donut("Yeast Donut Glazed",20));
+        currentOrder.add(new Donut("Yeast Donut Glazed",20));
+        currentOrder.add(new Donut("Yeast Donut Glazed",20));
+        currentOrder.add(new Donut("Yeast Donut Glazed",20));
+        updateList();
         updateCosts();
         checkEmptyOrder();
+    }
+
+    public void updateList() {
+        currentOrderAdapter = new CurrentOrderAdapter(currentOrder);
+        currentOrderListView.setAdapter(currentOrderAdapter);
+        currentOrderLayoutManager = new LinearLayoutManager(this);
+        currentOrderListView.setLayoutManager(currentOrderLayoutManager);
     }
 
     /**
@@ -62,6 +82,29 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private void disableButtons() {
         placeOrder.setEnabled(false);
         removeItem.setEnabled(false);
+    }
+
+    /**
+     * Handles the removal of a selected item in the menu item listview.
+     * Updates the current order object and the sub total, sales tax, and
+     * total price and the menu item listview.
+     * If no item was selected, it will display a warning alert that tells
+     * the user to select an item from the menu item list view.
+     * If the user removes the last item in the list view, it will display
+     * a warning and disable the buttons.
+     */
+    public void handleRemoveItem(View v) {
+        int selectedIndex = currentOrderAdapter.getSelected();
+        if (selectedIndex < 0) {
+            Toast.makeText(this, "Please select a valid item from the list!",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            currentOrder.remove(currentOrder.getItem(selectedIndex));
+            currentOrderAdapter.notifyItemRemoved(selectedIndex);
+            currentOrderAdapter.resetSelection();
+            updateCosts();
+            checkEmptyOrder();
+        }
     }
 
     /**
@@ -101,18 +144,18 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * alert indicating it has successfully added the current order to the
      * stored orders.
      */
-    public void addToStoredOrders() {
+    public void addToStoredOrders(View v) {
+        disableButtons();
         if (checkEmptyOrder()) {
             return;
         }
-        //StoreOrdersController.getOrders().add(currentOrder);
-        //currentOrderListView.getItems().clear();
+        StoredOrdersActivity.getOrders().add(currentOrder);
         currentOrder = new Order();
+        updateList();
         updateCosts();
         Toast.makeText(this, "Successfully added your current order! " +
                 "To view your previous orders, please click on the" +
                 " clipboard icon in the main menu", Toast.LENGTH_LONG).show();
-        disableButtons();
     }
 
 }

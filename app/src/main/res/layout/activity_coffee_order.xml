@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/CoffeeSubTotal"
+        android:id="@+id/coffeeSubTotal"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="24dp"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
-        android:id="@+id/sizeSelection"
+        android:id="@+id/coffeeSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -148,7 +148,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/sizeSelection"
+        app:layout_constraintBottom_toTopOf="@+id/coffeeSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -161,11 +161,11 @@
         android:layout_height="wrap_content"
         android:text="@string/size"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/sizeSelection"
-        app:layout_constraintEnd_toStartOf="@+id/sizeSelection"
+        app:layout_constraintBottom_toBottomOf="@+id/coffeeSize"
+        app:layout_constraintEnd_toStartOf="@+id/coffeeSize"
         app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sizeSelection"
+        app:layout_constraintTop_toTopOf="@+id/coffeeSize"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

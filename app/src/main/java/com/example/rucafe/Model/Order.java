@@ -94,6 +94,13 @@ public class Order implements Customizable {
     }
 
     /**
+     * Erase all the menu items.
+     */
+    public void clear() {
+        this.items.clear();
+    }
+
+    /**
      * Gets the subtotal cost of this order.
      * Assumes calculateSubTotalCost() was called beforehand.
      * @return the subtotal cost

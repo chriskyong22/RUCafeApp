@@ -7,25 +7,20 @@ package com.example.rucafe.Model;
  * @author Christopher Yong, Maya Ravichandran
  */
 public class Donut extends MenuItem {
-    private String type;
-    private String flavor;
+    private String donut;
     private int quantity;
 
-    public static final double YEAST_DONUT_PRICE = 1.39;
-    public static final double CAKE_DONUT_PRICE = 1.59;
-    public static final double DONUT_HOLES_PRICE = 0.33;
+    public static final double BASE_DONUT_PRICE = 1.39;
 
     /**
      * The constructor for the Donut class.
      * Sets the donut's type, flavor, and quantity to the values specified
      * in the method parameters.
-     * @param type the type of the donut
-     * @param flavor the flavor of the donut
+     * @param donut the type and flavor of the donut
      * @param quantity the number of this type of donut being ordered
      */
-    public Donut(String type, String flavor, int quantity) {
-        this.type = type;
-        this.flavor = flavor;
+    public Donut(String donut, int quantity) {
+        this.donut = donut;
         this.quantity = quantity;
     }
 
@@ -36,19 +31,7 @@ public class Donut extends MenuItem {
      */
     @Override
     public void itemPrice() {
-        switch(type) {
-            case "Yeast Donut":
-                super.itemPrice = YEAST_DONUT_PRICE * quantity;
-                break;
-            case "Cake Donut":
-                super.itemPrice = CAKE_DONUT_PRICE * quantity;
-                break;
-            case "Donut Holes":
-                super.itemPrice = DONUT_HOLES_PRICE * quantity;
-                break;
-            default:
-                super.itemPrice = 0;
-        }
+        super.itemPrice = quantity * BASE_DONUT_PRICE;
     }
 
     /**
@@ -58,7 +41,7 @@ public class Donut extends MenuItem {
      */
     @Override
     public String toString() {
-        return type + " " + flavor + "(" + quantity + ")";
+        return donut + " (" + quantity + ")";
     }
 
     /**
@@ -73,8 +56,7 @@ public class Donut extends MenuItem {
         if (!(o instanceof Donut)) return false;
         Donut donut = (Donut) o;
         return this.quantity == donut.quantity &&
-                this.type.equals(donut.type) &&
-                this.flavor.equals(donut.flavor);
+                this.donut.equals(donut.donut);
     }
 
 }
