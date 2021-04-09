@@ -49,4 +49,5 @@
         <item>Cake Donuts Chocolate</item>
         <item>Cake Donuts Vanilla</item>
     </string-array>
+    <string name="default_price">$0.00</string>
 </resources>
