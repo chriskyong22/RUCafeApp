@@ -26,7 +26,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
     private RecyclerView storedOrderListView;
     private TextView totalPrice;
     private Spinner orderComboBox;
-    private CurrentOrderAdapter currentOrderAdapter;
+    private OrderAdapter orderAdapter;
     private RecyclerView.LayoutManager currentOrderLayoutManager;
 
     @Override
@@ -93,8 +93,8 @@ public class StoredOrdersActivity extends AppCompatActivity {
     }
 
     public void updateList(Order order) {
-        currentOrderAdapter = new CurrentOrderAdapter(order);
-        storedOrderListView.setAdapter(currentOrderAdapter);
+        orderAdapter = new OrderAdapter(order);
+        storedOrderListView.setAdapter(orderAdapter);
         currentOrderLayoutManager = new LinearLayoutManager(this);
         storedOrderListView.setLayoutManager(currentOrderLayoutManager);
     }
@@ -151,7 +151,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
         Log.d("Order Number", (String) orderComboBox.getSelectedItem());
         int size = order.getNumberOfMenuItems();
         order.clear();
-        currentOrderAdapter.notifyItemRangeRemoved(0, size);
+        orderAdapter.notifyItemRangeRemoved(0, size);
         orders.remove(order);
         updateSpinner();
         if (selectedIndex > 0) {

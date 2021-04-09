@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +22,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private TextView subTotal, salesTax, totalPrice;
     private Button removeItem, placeOrder;
     private RecyclerView currentOrderListView;
-    private CurrentOrderAdapter currentOrderAdapter;
+    private OrderAdapter orderAdapter;
     private RecyclerView.LayoutManager currentOrderLayoutManager;
 
     @Override
@@ -47,8 +46,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     public void updateList() {
-        currentOrderAdapter = new CurrentOrderAdapter(currentOrder);
-        currentOrderListView.setAdapter(currentOrderAdapter);
+        orderAdapter = new OrderAdapter(currentOrder);
+        currentOrderListView.setAdapter(orderAdapter);
         currentOrderLayoutManager = new LinearLayoutManager(this);
         currentOrderListView.setLayoutManager(currentOrderLayoutManager);
     }
@@ -94,14 +93,14 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * a warning and disable the buttons.
      */
     public void handleRemoveItem(View v) {
-        int selectedIndex = currentOrderAdapter.getSelected();
+        int selectedIndex = orderAdapter.getSelected();
         if (selectedIndex < 0) {
             Toast.makeText(this, "Please select a valid item from the list!",
                     Toast.LENGTH_LONG).show();
         } else {
             currentOrder.remove(currentOrder.getItem(selectedIndex));
-            currentOrderAdapter.notifyItemRemoved(selectedIndex);
-            currentOrderAdapter.resetSelection();
+            orderAdapter.notifyItemRemoved(selectedIndex);
+            orderAdapter.resetSelection();
             updateCosts();
             checkEmptyOrder();
         }

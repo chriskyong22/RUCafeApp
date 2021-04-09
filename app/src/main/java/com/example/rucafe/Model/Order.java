@@ -73,6 +73,10 @@ public class Order implements Customizable {
         return items.get(index);
     }
 
+    public ArrayList<MenuItem> getItems() {
+        return this.items;
+    }
+
     /**
      * Gets the order number of this order.
      * @return the order number
