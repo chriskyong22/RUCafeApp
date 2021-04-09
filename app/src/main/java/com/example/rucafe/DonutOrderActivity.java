@@ -25,7 +25,6 @@ public class DonutOrderActivity extends AppCompatActivity {
     private RecyclerView donutRecycleView;
     private EditText quantity;
     private TextView subTotal;
-    private Button addItem, removeItem, addToCart;
     private OrderAdapter orderAdapter;
 
     @Override
@@ -36,9 +35,6 @@ public class DonutOrderActivity extends AppCompatActivity {
         donutRecycleView = findViewById(R.id.donutListView);
         quantity = findViewById(R.id.quantityDonuts);
         subTotal = findViewById(R.id.donutSubTotal);
-        addItem = findViewById(R.id.addItem);
-        removeItem = findViewById(R.id.removeItem);
-        addToCart = findViewById(R.id.addtoCart);
         updateList();
     }
 
@@ -67,7 +63,7 @@ public class DonutOrderActivity extends AppCompatActivity {
         }
         Toast.makeText(this, "Please enter a non-negative and" +
                 " non-empty/zero quantity that is below or " +
-                "equal to " + Integer.MAX_VALUE + ".", Toast.LENGTH_LONG).show();
+                "equal to " + Integer.MAX_VALUE + ".", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -135,6 +131,6 @@ public class DonutOrderActivity extends AppCompatActivity {
         updateSubTotal();
         Toast.makeText(this,"Successfully added to your shopping cart! " +
                 "Please check your current orders or the shopping cart " +
-                "icon to checkout your items!", Toast.LENGTH_LONG).show();
+                "icon to checkout your items!", Toast.LENGTH_SHORT).show();
     }
 }

@@ -35,7 +35,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stored_orders);
         cancelOrder = findViewById(R.id.cancelOrder);
         totalPrice = findViewById(R.id.totalPriceStoredOrders);
-        totalPrice.setText(R.string.default_price);
+        totalPrice.setText(getString(R.string.default_price));
         if (checkEmptyStoredOrders()) {
             return;
         }
@@ -106,7 +106,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
      */
     public boolean checkEmptyStoredOrders() {
         if (orders.getOrderNumbers() == null) {
-            totalPrice.setText(R.string.default_price);
+            totalPrice.setText(getString(R.string.default_price));
             disableButtons();
             generateEmptyWarning();
         }

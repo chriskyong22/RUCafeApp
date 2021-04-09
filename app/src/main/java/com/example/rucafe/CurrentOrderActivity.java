@@ -35,11 +35,6 @@ public class CurrentOrderActivity extends AppCompatActivity {
         removeItem = findViewById(R.id.removeItemOrder);
         placeOrder = findViewById(R.id.placeOrder);
         currentOrderListView = findViewById(R.id.currentOrderListView);
-        currentOrder.add(new Donut("Yeast Donut Glazed",20));
-        currentOrder.add(new Donut("Yeast Donut Glazed",20));
-        currentOrder.add(new Donut("Yeast Donut Glazed",20));
-        currentOrder.add(new Donut("Yeast Donut Glazed",20));
-        currentOrder.add(new Donut("Yeast Donut Glazed",20));
         updateList();
         updateCosts();
         checkEmptyOrder();
@@ -129,7 +124,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private void generateEmptyWarning() {
         Toast.makeText(this, "There are no current items in the cart!" +
                 " Please navigate back to the menu and select some items" +
-                " to checkout!", Toast.LENGTH_LONG).show();
+                " to checkout!", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -154,7 +149,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
         updateCosts();
         Toast.makeText(this, "Successfully added your current order! " +
                 "To view your previous orders, please click on the" +
-                " clipboard icon in the main menu", Toast.LENGTH_LONG).show();
+                " clipboard icon in the main menu", Toast.LENGTH_SHORT).show();
     }
 
 }
