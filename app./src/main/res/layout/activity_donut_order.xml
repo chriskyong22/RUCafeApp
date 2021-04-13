@@ -6,12 +6,14 @@
     android:layout_height="match_parent">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/donutSelection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:entries="@array/donut_list"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,29 +21,40 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/donutSelection"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/donuticon"
+        tools:srcCompat="@drawable/donuticon" />
 
     <TextView
-        android:id="@+id/subTotal"
+        android:id="@+id/donutSubTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/addtoCart"
+        android:layout_marginEnd="24dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/subtotalLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/subtotalLabel"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addtoCart"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:onClick="addToShoppingCart"
         android:text="@string/add_to_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,11 +69,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/subTotal"
+        app:layout_constraintBottom_toTopOf="@+id/subtotalLabel"
         app:layout_constraintEnd_toStartOf="@+id/removeItem"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantity"
+        app:layout_constraintTop_toBottomOf="@+id/quantityDonuts"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -68,19 +81,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:fontFamily="monospace"
         android:text="@string/donut_menu"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
+        android:textColor="@color/rutgers_red"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/removeItem"
-        android:layout_width="101dp"
-        android:layout_height="50dp"
+        android:layout_width="99dp"
+        android:layout_height="53dp"
         android:layout_marginEnd="16dp"
+        android:onClick="handleRemove"
         android:text="@string/remove_item"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/donutListView"
@@ -89,18 +106,19 @@
         app:layout_constraintVertical_bias="0.506" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/addItem"
         android:layout_width="101dp"
         android:layout_height="41dp"
         android:layout_marginEnd="32dp"
+        android:onClick="handleAdd"
         android:text="@string/add_item"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/quantity"
+        app:layout_constraintBottom_toBottomOf="@+id/quantityDonuts"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/quantity" />
+        app:layout_constraintTop_toTopOf="@+id/quantityDonuts" />
 
     <EditText
-        android:id="@+id/quantity"
+        android:id="@+id/quantityDonuts"
         android:layout_width="207dp"
         android:layout_height="38dp"
         android:layout_marginTop="16dp"
@@ -109,24 +127,24 @@
         android:hint="@string/quantity"
         android:inputType="number"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/addItem"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/donutSelection" />
 
     <TextView
         android:id="@+id/subtotalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/subtotal"
         android:textIsSelectable="false"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/subTotal"
-        app:layout_constraintEnd_toStartOf="@+id/subTotal"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/subTotal"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/addtoCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

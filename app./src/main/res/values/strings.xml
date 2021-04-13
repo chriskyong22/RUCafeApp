@@ -18,4 +18,36 @@
     <string name="place_order">Place Order</string>
     <string name="cancel_order">Cancel Order</string>
     <string name="add_item">Add Item</string>
+    <string name="menu_title">RUCafe [Main Menu]</string>
+    <string name="main_title">Menu</string>
+    <string name="donut_activity_title">RUCafe [Donut Menu]</string>
+    <string name="coffee_activity_title">RUCafe [Coffee Menu]</string>
+    <string name="current_order_activity_title">RUCafe [Current Order]</string>
+    <string name="stored_orders_activity_title">RUCafe [Stored Orders]</string>
+    <string name="size">Size</string>
+    <string-array name="quantity_list">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="coffee_size_list">
+        <item>Small</item>
+        <item>Tall</item>
+        <item>Grande</item>
+        <item>Venti</item>
+    </string-array>
+    <string-array name="donut_list">
+        <item>Donut Holes Glazed</item>
+        <item>Donut Holes Chocolate</item>
+        <item>Donut Holes Vanilla</item>
+        <item>Yeast Donuts Glazed</item>
+        <item>Yeast Donuts Chocolate</item>
+        <item>Yeast Donuts Vanilla</item>
+        <item>Cake Donuts Glazed</item>
+        <item>Cake Donuts Chocolate</item>
+        <item>Cake Donuts Vanilla</item>
+    </string-array>
+    <string name="default_price">$0.00</string>
 </resources>

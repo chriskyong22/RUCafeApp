@@ -9,6 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RUCafe">
+        <activity android:name=".DonutOrderActivity" android:label="@string/donut_activity_title"
+            android:parentActivityName=".MainActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".StoredOrdersActivity"
+            android:label="@string/stored_orders_activity_title"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".CurrentOrderActivity"
+            android:label="@string/current_order_activity_title"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".CoffeeOrderActivity" android:label="@string/coffee_activity_title"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
