@@ -14,10 +14,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rucafe.Model.MenuItem;
 import com.example.rucafe.Model.Order;
 import com.example.rucafe.Model.StoreOrders;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class StoredOrdersActivity extends AppCompatActivity {
 
@@ -36,10 +38,14 @@ public class StoredOrdersActivity extends AppCompatActivity {
         cancelOrder = findViewById(R.id.cancelOrder);
         totalPrice = findViewById(R.id.totalPriceStoredOrders);
         totalPrice.setText(getString(R.string.default_price));
+        storedOrderListView = findViewById(R.id.storedOrderListView);
         if (checkEmptyStoredOrders()) {
+            orderAdapter = new OrderAdapter(new ArrayList<MenuItem>());
+            storedOrderListView.setAdapter(orderAdapter);
+            currentOrderLayoutManager = new LinearLayoutManager(this);
+            storedOrderListView.setLayoutManager(currentOrderLayoutManager);
             return;
         }
-        storedOrderListView = findViewById(R.id.storedOrderListView);
         orderComboBox = findViewById(R.id.storedOrderSpinner);
         updateSpinner();
         handleSelectedOrder();
@@ -76,8 +82,8 @@ public class StoredOrdersActivity extends AppCompatActivity {
         if (checkEmptyStoredOrders()) {
             return;
         }
-        Log.d("SELECTED Select INDEX", (String) orderComboBox.getSelectedItem());
-        updateOrderDetails(orders.findOrder(Integer.valueOf((String) orderComboBox.getSelectedItem())));
+        Log.d("SELECTED Select INDEX", orderComboBox.getSelectedItem().toString());
+        updateOrderDetails(orders.findOrder(Integer.valueOf(orderComboBox.getSelectedItem().toString())));
     }
 
     /**
@@ -128,7 +134,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
      */
     private void generateEmptyWarning() {
         Toast.makeText(StoredOrdersActivity.this,  "There are no orders placed! Please" +
-                " navigate back to the menu and place some orders!", Toast.LENGTH_LONG).show();
+                " navigate back to the menu and place some orders!", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -148,7 +154,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
         int selectedIndex = orderComboBox.getSelectedItemPosition();
         Log.d("SELECTED INDEX", selectedIndex + "");
         Order order = orders.findOrder(Integer.valueOf((String) orderComboBox.getSelectedItem()));
-        Log.d("Order Number", (String) orderComboBox.getSelectedItem());
+        Log.d("Order Number", orderComboBox.getSelectedItem().toString());
         int size = order.getNumberOfMenuItems();
         order.clear();
         orderAdapter.notifyItemRangeRemoved(0, size);

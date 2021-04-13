@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.rucafe.Model.Donut;
 import com.example.rucafe.Model.Order;
 
 import java.text.DecimalFormat;
@@ -91,7 +90,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
         int selectedIndex = orderAdapter.getSelected();
         if (selectedIndex < 0) {
             Toast.makeText(this, "Please select a valid item from the list!",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         } else {
             currentOrder.remove(currentOrder.getItem(selectedIndex));
             orderAdapter.notifyItemRemoved(selectedIndex);
