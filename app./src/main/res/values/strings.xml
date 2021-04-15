@@ -33,7 +33,7 @@
         <item>5</item>
     </string-array>
     <string-array name="coffee_size_list">
-        <item>Small</item>
+        <item>Short</item>
         <item>Tall</item>
         <item>Grande</item>
         <item>Venti</item>
