@@ -37,6 +37,7 @@ public class Coffee extends MenuItem implements Customizable {
     /**
      * Adds the specified object to the list of the coffee's add-ins.
      * @param obj a string containing the name of the add-in to be added
+     * @return true if removed, otherwise false
      */
     @Override
     public boolean add(Object obj) {
@@ -49,6 +50,7 @@ public class Coffee extends MenuItem implements Customizable {
     /**
      * Removes the specified object from the list of the coffee's add-ins.
      * @param obj a string containing the name of the add-in to be removed
+     * @return true if removed, otherwise false
      */
     @Override
     public boolean remove(Object obj) {
@@ -83,7 +85,7 @@ public class Coffee extends MenuItem implements Customizable {
 
     /**
      * Sets the size of the coffee to the specified value.
-     * @param size the size of the coffee (small, tall, grande, venti)
+     * @param size the size of the coffee (Small, Tall, Grande, Venti)
      */
     public void setSize(String size) {
         this.size = size;

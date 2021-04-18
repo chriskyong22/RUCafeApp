@@ -21,6 +21,10 @@ import com.example.rucafe.Model.StoreOrders;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * TODO
+ * @author Christopher Yong, Maya Ravichandran
+ */
 public class StoredOrdersActivity extends AppCompatActivity {
 
     private static StoreOrders orders = new StoreOrders();
@@ -89,6 +93,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
     /**
      * Updates the list view with the menu items stored in the order, the
      * total price displayed.
+     * @param order the order used to display
      */
     private void updateOrderDetails(Order order) {
         updateList(order);
@@ -98,6 +103,11 @@ public class StoredOrdersActivity extends AppCompatActivity {
         totalPrice.setText(decimalFormat.format(order.getTotalCost()));
     }
 
+    /**
+     * Used to create the adapter for the recyclerlist and update the list to display the
+     * menuitems in the order object passed in
+     * @param order the order to create an adapter from and display in the list
+     */
     public void updateList(Order order) {
         orderAdapter = new OrderAdapter(order);
         storedOrderListView.setAdapter(orderAdapter);
@@ -133,8 +143,15 @@ public class StoredOrdersActivity extends AppCompatActivity {
      * because there are no more stored orders.
      */
     private void generateEmptyWarning() {
-        Toast.makeText(StoredOrdersActivity.this,  "There are no orders placed! Please" +
-                " navigate back to the menu and place some orders!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(StoredOrdersActivity.this,
+                getString(R.string.empty_stored_order_message), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Disables the place order
+     */
+    private void disableButtons() {
+        cancelOrder.setEnabled(false);
     }
 
     /**
@@ -146,6 +163,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
      * If there are no orders after removing the current selected order, it
      * will disable all buttons and display an alert to the user informing
      * there are no more orders to display.
+     * @param v the view being used
      */
     public void handleDeleteOrder(View v) {
         if (checkEmptyStoredOrders()) {
@@ -167,14 +185,6 @@ public class StoredOrdersActivity extends AppCompatActivity {
             return;
         }
         handleSelectedOrder();
-    }
-
-
-    /**
-     * Disables the place order
-     */
-    private void disableButtons() {
-        cancelOrder.setEnabled(false);
     }
 
 }

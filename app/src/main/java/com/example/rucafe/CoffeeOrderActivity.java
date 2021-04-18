@@ -14,6 +14,10 @@ import com.example.rucafe.Model.Coffee;
 
 import java.text.DecimalFormat;
 
+/**
+ * TODO
+ * @author Christopher Yong, Maya Ravichandran
+ */
 public class CoffeeOrderActivity extends AppCompatActivity {
     private Spinner coffeeSize, coffeeQuantity;
     private CheckBox cream, syrup, milk, caramel, whippedCream;
@@ -78,6 +82,7 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * Checks if the Cream add-in should be added to the current
      * coffee object, does the corresponding remove/add operation,
      * and updates the sub-total.
+     * @param v View being used
      */
     public void checkCream(View v) {
         if (cream.isChecked()) {
@@ -92,6 +97,7 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * Checks if the syrup add-in should be added to the current
      * coffee object, does the corresponding remove/add operation,
      * and updates the sub-total.
+     * @param v View being used
      */
     public void checkSyrup(View v) {
         if (syrup.isChecked()) {
@@ -106,6 +112,7 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * Checks if the milk add-in should be added to the current
      * coffee object, does the corresponding remove/add operation,
      * and updates the sub-total.
+     * @param v View being used
      */
     public void checkMilk(View v) {
         if (milk.isChecked()) {
@@ -120,6 +127,7 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * Checks if the caramel add-in should be added to the current
      * coffee object, does the corresponding remove/add operation,
      * and updates the sub-total.
+     * @param v View being used
      */
     public void checkCaramel(View v) {
         if (caramel.isChecked()) {
@@ -134,6 +142,7 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * Checks if the whipped cream add-in should be added to the current
      * coffee object, does the corresponding remove/add operation,
      * and updates the sub-total.
+     * @param v View being used
      */
     public void checkWhippedCream(View v) {
         if (whippedCream.isChecked()) {
@@ -173,12 +182,12 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * Adds the current coffee to the current order and generates
      * a new coffee if the user wishes to add another coffee.
      * Generates Alert confirming the coffee was added to the cart.
+     * @param v View being used
      */
     public void addToShoppingCart(View v) {
         CurrentOrderActivity.getCurrentOrder().add(coffee);
         createNewCoffee();
-        Toast.makeText(this,"Successfully added to your shopping cart! " +
-                "Please check your current orders or the shopping cart " +
-                "icon to checkout your items!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.success_add_to_shopping_cart),
+                Toast.LENGTH_SHORT).show();
     }
 }

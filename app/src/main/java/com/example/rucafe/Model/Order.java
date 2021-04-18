@@ -73,6 +73,10 @@ public class Order implements Customizable {
         return items.get(index);
     }
 
+    /**
+     * Retrieve all the menu items
+     * @return Arraylist of menu items stored
+     */
     public ArrayList<MenuItem> getItems() {
         return this.items;
     }
@@ -139,19 +143,6 @@ public class Order implements Customizable {
      */
     public double getTotalCost() {
         return this.totalCost;
-    }
-
-    /**
-     * Creates an ArrayList of all the menu items in this order converted to
-     * String form and returns this ArrayList.
-     * @return an ArrayList of all the menu items in String form.
-     */
-    public ArrayList<String> stringifiedMenuItems() {
-        ArrayList<String> toReturn = new ArrayList<>();
-        for (MenuItem item : items) {
-            toReturn.add(item.toString());
-        }
-        return toReturn;
     }
 
     /**

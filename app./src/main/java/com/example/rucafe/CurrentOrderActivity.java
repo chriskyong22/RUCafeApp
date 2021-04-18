@@ -14,6 +14,10 @@ import com.example.rucafe.Model.Order;
 
 import java.text.DecimalFormat;
 
+/**
+ * TODO
+ * @author Christopher Yong, Maya Ravichandran
+ */
 public class CurrentOrderActivity extends AppCompatActivity {
 
     private static Order currentOrder = new Order();
@@ -85,11 +89,12 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * the user to select an item from the menu item list view.
      * If the user removes the last item in the list view, it will display
      * a warning and disable the buttons.
+     * @param v View being used
      */
     public void handleRemoveItem(View v) {
         int selectedIndex = orderAdapter.getSelected();
         if (selectedIndex < 0) {
-            Toast.makeText(this, "Please select a valid item from the list!",
+            Toast.makeText(this, getString(R.string.invalid_selection),
                     Toast.LENGTH_SHORT).show();
         } else {
             currentOrder.remove(currentOrder.getItem(selectedIndex));
@@ -121,9 +126,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * menu items).
      */
     private void generateEmptyWarning() {
-        Toast.makeText(this, "There are no current items in the cart!" +
-                " Please navigate back to the menu and select some items" +
-                " to checkout!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.empty_cart), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -136,6 +139,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * price and the list view and disable all the buttons and display a
      * alert indicating it has successfully added the current order to the
      * stored orders.
+     * @param v View being used
      */
     public void addToStoredOrders(View v) {
         disableButtons();
@@ -146,9 +150,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
         currentOrder = new Order();
         updateList();
         updateCosts();
-        Toast.makeText(this, "Successfully added your current order! " +
-                "To view your previous orders, please click on the" +
-                " clipboard icon in the main menu", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.added_to_stored_order_message),
+                Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -50,4 +50,18 @@
         <item>Cake Donuts Vanilla</item>
     </string-array>
     <string name="default_price">$0.00</string>
+    <string name="success_add_to_shopping_cart">Successfully added to your shopping cart!
+        Please check your current orders or the shopping cart icon to checkout your items!</string>
+    <string name="empty_shopping_cart_message">Please add some items before trying to add to the
+        shopping cart!</string>
+    <string name="invalid_selection">Please select a valid item from the list!</string>
+    <string name="empty_cart">There are no current items in the cart! Please navigate back to
+        the menu and select some items to checkout!</string>
+    <string name="added_to_stored_order_message">Successfully added your current order! To view
+        your previous orders, please click on the clipboard icon in the main menu.</string>
+    <string name="empty_stored_order_message">There are no orders placed! Please navigate back to
+        the menu and place some orders!</string>
+    <string name="invalid_quantity">Please enter a non-negative and non-empty/zero quantity that
+        is below or equal to 2147483647.</string>
+
 </resources>

@@ -17,6 +17,10 @@ import com.example.rucafe.Model.MenuItem;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * TODO
+ * @author Christopher Yong, Maya Ravichandran
+ */
 public class DonutOrderActivity extends AppCompatActivity {
 
     private ArrayList<MenuItem> storedDonuts = new ArrayList<>();
@@ -43,6 +47,7 @@ public class DonutOrderActivity extends AppCompatActivity {
      * view and sub-total price.
      * Also performs the necessary validation for the quantity and will
      * display an alert message if the quantity is invalid.
+     * @param v View being used
      */
     public void handleAdd(View v) {
         String donutTypeAndFlavor = selection.getSelectedItem().toString();
@@ -60,9 +65,8 @@ public class DonutOrderActivity extends AppCompatActivity {
             // Catch the exception when it occurs and go straight to the
             // Alert message afterwards below
         }
-        Toast.makeText(this, "Please enter a non-negative and" +
-                " non-empty/zero quantity that is below or " +
-                "equal to " + Integer.MAX_VALUE + ".", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.invalid_quantity),
+                Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -70,11 +74,12 @@ public class DonutOrderActivity extends AppCompatActivity {
      * updates the list view and sub-total upon deletion of the donut.
      * If no donut was selected, it will display an alert telling the user to
      * select an item from the list view.
+     * @param v View being used
      */
     public void handleRemove(View v) {
         int selectedIndex = orderAdapter.getSelected();
         if (selectedIndex < 0) {
-            Toast.makeText(this, "Please select a valid item from the list!",
+            Toast.makeText(this, getString(R.string.invalid_selection),
                     Toast.LENGTH_SHORT).show();
         } else {
             storedDonuts.remove(selectedIndex);
@@ -114,11 +119,12 @@ public class DonutOrderActivity extends AppCompatActivity {
      * If no donuts were added (meaning the donut list view is empty), it
      * will generate a warning telling the user to add donuts before adding
      * to the cart.
+     * @param v View being used
      */
     public void addToShoppingCart(View v) {
         if (storedDonuts.size() == 0) {
-            Toast.makeText(this,"Please add some items before adding to " +
-                    "the shopping cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.empty_shopping_cart_message),
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -128,8 +134,7 @@ public class DonutOrderActivity extends AppCompatActivity {
         storedDonuts.clear();
         orderAdapter.notifyItemRangeRemoved(0, size);
         updateSubTotal();
-        Toast.makeText(this,"Successfully added to your shopping cart! " +
-                "Please check your current orders or the shopping cart " +
-                "icon to checkout your items!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.success_add_to_shopping_cart),
+                Toast.LENGTH_SHORT).show();
     }
 }
