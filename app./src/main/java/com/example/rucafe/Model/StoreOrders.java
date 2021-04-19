@@ -1,8 +1,5 @@
 package com.example.rucafe.Model;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**

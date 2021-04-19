@@ -144,6 +144,7 @@ public class DonutOrderActivity extends AppCompatActivity {
         int size = storedDonuts.size();
         storedDonuts.clear();
         orderAdapter.notifyItemRangeRemoved(0, size);
+        orderAdapter.resetSelection();
         updateSubTotal();
         Toast.makeText(this, getString(R.string.success_add_to_shopping_cart),
                 Toast.LENGTH_SHORT).show();
