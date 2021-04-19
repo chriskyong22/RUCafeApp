@@ -37,22 +37,44 @@ public class CoffeeOrderActivity extends AppCompatActivity {
         subTotal = findViewById(R.id.coffeeSubTotal);
         createNewCoffee();
         coffeeSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * EventListener for the item selected in the coffee size spinner.
+             * @param parent parent adapter view
+             * @param view view associated
+             * @param position position selected
+             * @param id id
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 updateSize();
             }
 
+            /**
+             * EventListener for no item selected in the coffee size spinner.
+             * @param parent parent adapter view
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
         coffeeQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * EventListener for the item selected in the coffee Quantity spinner.
+             * @param parent parent adapter view
+             * @param view view associated
+             * @param position position selected
+             * @param id id
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 updateQuantity();
             }
 
+            /**
+             * EventListener for no item selected in the coffee Quantity spinner.
+             * @param parent parent adapter view
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 

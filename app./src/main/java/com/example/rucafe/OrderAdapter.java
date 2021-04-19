@@ -84,10 +84,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         } else {
             holder.itemDescription.setBackgroundColor(Color.parseColor("#FBFBFF"));
         }
+        /**
+         * Event listener for item clicker on the recycler view
+         * @param view the recycler view
+         */
         holder.itemDescription.setOnClickListener(view -> {
             int oldSelected = selected;
             selected = holder.getAdapterPosition();
-            Log.d("SELECTED POSITION", selected + " | Previous " + oldSelected);
             if (oldSelected != RecyclerView.NO_POSITION) {
                 notifyItemChanged(oldSelected, items.get(oldSelected));
             }
