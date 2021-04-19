@@ -15,7 +15,9 @@ import com.example.rucafe.Model.Coffee;
 import java.text.DecimalFormat;
 
 /**
- * TODO
+ * Coffee controller to link the Coffee View to the Coffee Model.
+ * It updates the sub-total upon adding/removing add-ins, changing the coffee
+ * quantity or price, and upon adding to the shopping cart.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class CoffeeOrderActivity extends AppCompatActivity {
@@ -23,6 +25,12 @@ public class CoffeeOrderActivity extends AppCompatActivity {
     private CheckBox cream, syrup, milk, caramel, whippedCream;
     private TextView subTotal;
     private Coffee coffee;
+
+    /**
+     * Initializes the views in the layout.
+     * Retrieves the references of the views and initializes all the checkboxes and spinners.
+     * @param savedInstanceState savedInstanceState if provided
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

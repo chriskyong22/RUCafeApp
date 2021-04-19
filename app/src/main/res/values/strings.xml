@@ -63,5 +63,9 @@
         the menu and place some orders!</string>
     <string name="invalid_quantity">Please enter a non-negative and non-empty/zero quantity that
         is below or equal to 2147483647.</string>
+    <string name="coffee_caption">Coffee Picture</string>
+    <string name="donut_caption">Donut Picture</string>
+    <string name="cart_caption">Shopping Cart Picture</string>
+    <string name="checklist_caption">Checklist Picture</string>
 
 </resources>

@@ -18,9 +18,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * TODO
+ * Donut controller to link the Donut View to the Donut model.
+ * It updates the sub-total and donut list view upon adding/removing donuts,
+ * and it allows the user to add the list's donuts to the current order.
  * @author Christopher Yong, Maya Ravichandran
  */
+
 public class DonutOrderActivity extends AppCompatActivity {
 
     private ArrayList<MenuItem> storedDonuts = new ArrayList<>();
@@ -30,6 +33,11 @@ public class DonutOrderActivity extends AppCompatActivity {
     private TextView subTotal;
     private OrderAdapter orderAdapter;
 
+    /**
+     * Initializes the views in the layout.
+     * Retrieves all the references of the views to be used and initializes the recyclerview.
+     * @param savedInstanceState savedInstanceState if provided
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +62,7 @@ public class DonutOrderActivity extends AppCompatActivity {
         try {
             String donutQuantity = quantity.getText().toString();
             int quantity = Integer.parseInt(donutQuantity);
-            if (quantity > 0 && donutTypeAndFlavor != null) {
+            if (quantity > 0) {
                 Donut donut = new Donut(donutTypeAndFlavor, quantity);
                 storedDonuts.add(donut);
                 orderAdapter.notifyItemInserted(storedDonuts.size() - 1);
@@ -89,6 +97,9 @@ public class DonutOrderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates the recyclerview.
+     */
     private void updateList() {
         orderAdapter = new OrderAdapter(storedDonuts);
         donutRecycleView.setAdapter(orderAdapter);

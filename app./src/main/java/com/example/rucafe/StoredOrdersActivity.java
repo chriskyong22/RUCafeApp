@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,9 +21,13 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * TODO
+ * StoreOrders controller to link the StoreOrders View to the StoreOrders
+ * Model.
+ * It updates the list view and total price upon selection and removal
+ * of an order. In addition, you can export ALL stored orders to a text file.
  * @author Christopher Yong, Maya Ravichandran
  */
+
 public class StoredOrdersActivity extends AppCompatActivity {
 
     private static StoreOrders orders = new StoreOrders();
@@ -35,6 +38,12 @@ public class StoredOrdersActivity extends AppCompatActivity {
     private OrderAdapter orderAdapter;
     private RecyclerView.LayoutManager currentOrderLayoutManager;
 
+    /**
+     * Initializes the views in the layout.
+     * Sets the order numbers and the recycler view and retrieves all the view references
+     * so it can be used.
+     * @param savedInstanceState savedInstanceState if provided
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +92,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
             orderComboBox.setAdapter(null);
             return;
         }
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter(StoredOrdersActivity.this,
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(StoredOrdersActivity.this,
                 R.layout.support_simple_spinner_dropdown_item, orders.getOrderNumbers());
         orderComboBox.setAdapter(spinnerAdapter);
     }
@@ -99,7 +108,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
         if (checkEmptyStoredOrders()) {
             return;
         }
-        updateOrderDetails(orders.findOrder(Integer.valueOf(orderComboBox.
+        updateOrderDetails(orders.findOrder(Integer.parseInt(orderComboBox.
                 getSelectedItem().toString())));
     }
 
@@ -118,7 +127,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
 
     /**
      * Used to create the adapter for the recyclerlist and update the list to display the
-     * menuitems in the order object passed in
+     * Menuitems in the order object passed in
      * @param order the order to create an adapter from and display in the list
      */
     public void updateList(Order order) {
@@ -183,7 +192,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
             return;
         }
         int selectedIndex = orderComboBox.getSelectedItemPosition();
-        Order order = orders.findOrder(Integer.valueOf((String) orderComboBox.getSelectedItem()));
+        Order order = orders.findOrder(Integer.parseInt((String) orderComboBox.getSelectedItem()));
         int size = order.getNumberOfMenuItems();
         order.clear();
         orderAdapter.notifyItemRangeRemoved(0, size);

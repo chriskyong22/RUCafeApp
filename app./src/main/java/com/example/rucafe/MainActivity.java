@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 
 /**
- * TODO
+ * Controller for the main menu for the RU CAFE, which loads the other views
+ * upon user selection.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Initializes the views in the layout.
+     * @param savedInstanceState savedInstanceState if provided
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

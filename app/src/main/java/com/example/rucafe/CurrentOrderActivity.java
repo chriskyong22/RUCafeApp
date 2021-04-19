@@ -15,7 +15,10 @@ import com.example.rucafe.Model.Order;
 import java.text.DecimalFormat;
 
 /**
- * TODO
+ * CurrentOrder controller links the CurrentOrder View to the CurrentOrder
+ * Model. It updates the sub total, sales tax, and total price upon
+ * adding/removing menu items. In addition, you can add the current orders to
+ * a stored order list.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class CurrentOrderActivity extends AppCompatActivity {
@@ -26,8 +29,12 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private Button removeItem, placeOrder;
     private RecyclerView currentOrderListView;
     private OrderAdapter orderAdapter;
-    private RecyclerView.LayoutManager currentOrderLayoutManager;
 
+    /**
+     * Initializes the views in the layout.
+     * Retrieves the references of the views and initializes the recyclerview and cost.
+     * @param savedInstanceState savedInstanceState if provided
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +50,14 @@ public class CurrentOrderActivity extends AppCompatActivity {
         checkEmptyOrder();
     }
 
+    /**
+     * Updates the recyclerview.
+     */
     public void updateList() {
         orderAdapter = new OrderAdapter(currentOrder);
         currentOrderListView.setAdapter(orderAdapter);
-        currentOrderLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager currentOrderLayoutManager =
+                new LinearLayoutManager(this);
         currentOrderListView.setLayoutManager(currentOrderLayoutManager);
     }
 
@@ -82,9 +93,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     /**
-     * Handles the removal of a selected item in the menu item listview.
+     * Handles the removal of a selected item in the menu item recyclerview.
      * Updates the current order object and the sub total, sales tax, and
-     * total price and the menu item listview.
+     * total price and the menu item recyclerview.
      * If no item was selected, it will display a warning alert that tells
      * the user to select an item from the menu item list view.
      * If the user removes the last item in the list view, it will display

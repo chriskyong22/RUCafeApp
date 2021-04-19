@@ -153,6 +153,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/coffee_caption"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/coffeeSize"
         app:layout_constraintEnd_toEndOf="parent"

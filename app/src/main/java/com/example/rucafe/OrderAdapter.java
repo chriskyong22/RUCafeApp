@@ -1,7 +1,6 @@
 package com.example.rucafe;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,8 @@ import com.example.rucafe.Model.Order;
 import java.util.ArrayList;
 
 /**
- * TODO
+ * Adapter for the recycler view, used to bind each item in the recycler view to the
+ * Menuitem Arraylist.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
@@ -24,7 +24,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     private int selected = RecyclerView.NO_POSITION;
 
     /**
-     * Constructor used to set the list of menu items in the adpater to the model's menu items
+     * Constructor used to set the list of menu items in the adapter to the model's menu items
      * passed in.
      * @param order the order passed in to link the adapter's menu items to
      */
@@ -59,7 +59,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
      * Creates a new view holder object that holds a view that has its ids associated
      * @param parent parent context (parent view)
      * @param viewType viewType (not used)
-     * @return
+     * @return OrderViewHolder object
      */
     @NonNull
     @Override
@@ -84,6 +84,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         } else {
             holder.itemDescription.setBackgroundColor(Color.parseColor("#FBFBFF"));
         }
+
         /**
          * Event listener for item clicker on the recycler view
          * @param view the recycler view
