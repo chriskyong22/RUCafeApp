@@ -33,7 +33,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
     private static StoreOrders orders = new StoreOrders();
     private Button cancelOrder;
     private RecyclerView storedOrderListView;
-    private TextView totalPrice;
+    private TextView totalPrice, subTotal,salesTax;
     private Spinner orderComboBox;
     private OrderAdapter orderAdapter;
     private RecyclerView.LayoutManager currentOrderLayoutManager;
@@ -51,6 +51,10 @@ public class StoredOrdersActivity extends AppCompatActivity {
         cancelOrder = findViewById(R.id.cancelOrder);
         totalPrice = findViewById(R.id.totalPriceStoredOrders);
         totalPrice.setText(getString(R.string.default_price));
+        subTotal = findViewById(R.id.subTotalStoredOrders);
+        subTotal.setText(getString(R.string.default_price));
+        salesTax = findViewById(R.id.salesTaxStoredOrders);
+        salesTax.setText(getString(R.string.default_price));
         storedOrderListView = findViewById(R.id.storedOrderListView);
         if (checkEmptyStoredOrders()) {
             orderAdapter = new OrderAdapter(new ArrayList<MenuItem>());
@@ -114,14 +118,16 @@ public class StoredOrdersActivity extends AppCompatActivity {
 
     /**
      * Updates the recycler view with the menu items stored in the order, the
-     * total price displayed.
+     * total price, sales tax, and subtotal displayed.
      * @param order the order used to display
      */
     private void updateOrderDetails(Order order) {
         updateList(order);
-        order.calculateSubTotalCost();
-        order.calculateTotalCost();
         DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
+        order.calculateSubTotalCost();
+        subTotal.setText(decimalFormat.format(order.getSubTotalCost()));
+        salesTax.setText(decimalFormat.format(order.getSalesTax()));
+        order.calculateTotalCost();
         totalPrice.setText(decimalFormat.format(order.getTotalCost()));
     }
 
@@ -145,6 +151,8 @@ public class StoredOrdersActivity extends AppCompatActivity {
     public boolean checkEmptyStoredOrders() {
         if (orders.getOrderNumbers() == null) {
             totalPrice.setText(getString(R.string.default_price));
+            subTotal.setText(getString(R.string.default_price));
+            salesTax.setText(getString(R.string.default_price));
             disableButtons();
             generateEmptyWarning();
         }
