@@ -39,15 +39,9 @@
         <item>Venti</item>
     </string-array>
     <string-array name="donut_list">
-        <item>Donut Holes Glazed</item>
-        <item>Donut Holes Chocolate</item>
-        <item>Donut Holes Vanilla</item>
-        <item>Yeast Donuts Glazed</item>
-        <item>Yeast Donuts Chocolate</item>
-        <item>Yeast Donuts Vanilla</item>
-        <item>Cake Donuts Glazed</item>
-        <item>Cake Donuts Chocolate</item>
-        <item>Cake Donuts Vanilla</item>
+        <item>Donut Hole</item>
+        <item>Yeast Donut</item>
+        <item>Cake Donut</item>
     </string-array>
     <string name="default_price">$0.00</string>
     <string name="success_add_to_shopping_cart">Successfully added to your shopping cart!
