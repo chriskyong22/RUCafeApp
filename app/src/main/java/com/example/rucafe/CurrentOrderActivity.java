@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 
 /**
  * CurrentOrder controller links the CurrentOrder View to the CurrentOrder
- * Model. It updates the sub total, sales tax, and total price upon
+ * Model. It updates the sub-total, sales tax, and total price upon
  * adding/removing menu items. In addition, you can add the current orders to
  * a stored order list.
  * @author Christopher Yong, Maya Ravichandran
@@ -32,7 +32,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
     /**
      * Initializes the views in the layout.
-     * Retrieves the references of the views and initializes the recyclerview and cost.
+     * Retrieves the references of the views and initializes the
+     * recyclerview and cost.
      * @param savedInstanceState savedInstanceState if provided
      */
     @Override
@@ -51,7 +52,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates the recyclerview.
+     * Updates the RecyclerView.
      */
     public void updateList() {
         orderAdapter = new OrderAdapter(currentOrder);
@@ -93,9 +94,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     /**
-     * Handles the removal of a selected item in the menu item recyclerview.
+     * Handles the removal of a selected item in the menu item RecyclerView.
      * Updates the current order object and the sub total, sales tax, and
-     * total price and the menu item recyclerview.
+     * total price and the menu item RecyclerView.
      * If no item was selected, it will display a warning alert that tells
      * the user to select an item from the menu item list view.
      * If the user removes the last item in the list view, it will display
@@ -137,16 +138,17 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * menu items).
      */
     private void generateEmptyWarning() {
-        Toast.makeText(this, getString(R.string.empty_cart), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.empty_cart),
+                Toast.LENGTH_SHORT).show();
     }
 
     /**
      * Handles the adding to the stored orders.
      * If there are no items currently in the current order, it will not
-     * add it to the stored orders and just display a warning instead and
+     * add it to the stored orders and just displays a warning instead and
      * disables the buttons.
      * Upon addition of the current order to the stored orders, it will
-     * generate a new order object and update the sub total, sales, and total
+     * generate a new order object and update the sub-total, sales, and total
      * price and the list view and disable all the buttons and display a
      * alert indicating it has successfully added the current order to the
      * stored orders.
@@ -161,7 +163,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
         currentOrder = new Order();
         updateList();
         updateCosts();
-        Toast.makeText(this, getString(R.string.added_to_stored_order_message),
+        Toast.makeText(this, getString(
+                R.string.added_to_stored_order_message),
                 Toast.LENGTH_SHORT).show();
     }
 

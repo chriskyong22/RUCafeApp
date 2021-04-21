@@ -28,7 +28,8 @@ public class CoffeeOrderActivity extends AppCompatActivity {
 
     /**
      * Initializes the views in the layout.
-     * Retrieves the references of the views and initializes all the checkboxes and spinners.
+     * Retrieves the references of the views and initializes all the
+     * checkboxes and spinners.
      * @param savedInstanceState savedInstanceState if provided
      */
     @Override
@@ -44,7 +45,8 @@ public class CoffeeOrderActivity extends AppCompatActivity {
         whippedCream = findViewById(R.id.whippedCreamCheck);
         subTotal = findViewById(R.id.coffeeSubTotal);
         createNewCoffee();
-        coffeeSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        coffeeSize.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
             /**
              * EventListener for the item selected in the coffee size spinner.
              * @param parent parent adapter view
@@ -53,7 +55,8 @@ public class CoffeeOrderActivity extends AppCompatActivity {
              * @param id id
              */
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
                 updateSize();
             }
 
@@ -66,21 +69,25 @@ public class CoffeeOrderActivity extends AppCompatActivity {
 
             }
         });
-        coffeeQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        coffeeQuantity.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
             /**
-             * EventListener for the item selected in the coffee Quantity spinner.
+             * EventListener for the item selected in the coffee Quantity
+             * spinner.
              * @param parent parent adapter view
              * @param view view associated
              * @param position position selected
              * @param id id
              */
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
                 updateQuantity();
             }
 
             /**
-             * EventListener for no item selected in the coffee Quantity spinner.
+             * EventListener for no item selected in the coffee quantity
+             * spinner.
              * @param parent parent adapter view
              */
             @Override
@@ -104,12 +111,13 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      * the sub-total.
      */
     public void updateQuantity() {
-        coffee.setQuantity(Integer.parseInt(coffeeQuantity.getSelectedItem().toString()));
+        coffee.setQuantity(Integer.parseInt(coffeeQuantity
+                .getSelectedItem().toString()));
         updateSubTotal();
     }
 
     /**
-     * Checks if the Cream add-in should be added to the current
+     * Checks if the cream add-in should be added to the current
      * coffee object, does the corresponding remove/add operation,
      * and updates the sub-total.
      * @param v View being used
@@ -189,7 +197,8 @@ public class CoffeeOrderActivity extends AppCompatActivity {
      */
     private void createNewCoffee() {
         coffee = new Coffee(coffeeSize.getSelectedItem().toString(),
-                Integer.parseInt(coffeeQuantity.getSelectedItem().toString()));
+                Integer.parseInt(coffeeQuantity.getSelectedItem()
+                        .toString()));
         checkCream(cream);
         checkCaramel(caramel);
         checkMilk(milk);
@@ -217,7 +226,8 @@ public class CoffeeOrderActivity extends AppCompatActivity {
     public void addToShoppingCart(View v) {
         CurrentOrderActivity.getCurrentOrder().add(coffee);
         createNewCoffee();
-        Toast.makeText(this, getString(R.string.success_add_to_shopping_cart),
+        Toast.makeText(this, getString(
+                R.string.success_add_to_shopping_cart),
                 Toast.LENGTH_SHORT).show();
     }
 }

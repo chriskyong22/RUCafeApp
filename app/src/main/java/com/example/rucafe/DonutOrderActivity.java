@@ -23,7 +23,6 @@ import java.util.ArrayList;
  * and it allows the user to add the list's donuts to the current order.
  * @author Christopher Yong, Maya Ravichandran
  */
-
 public class DonutOrderActivity extends AppCompatActivity {
 
     private ArrayList<MenuItem> storedDonuts = new ArrayList<>();
@@ -35,7 +34,8 @@ public class DonutOrderActivity extends AppCompatActivity {
 
     /**
      * Initializes the views in the layout.
-     * Retrieves all the references of the views to be used and initializes the recyclerview.
+     * Retrieves all the references of the views to be used and initializes
+     * the RecyclerView.
      * @param savedInstanceState savedInstanceState if provided
      */
     @Override
@@ -98,12 +98,13 @@ public class DonutOrderActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates the recyclerview.
+     * Updates the RecyclerView.
      */
     private void updateList() {
         orderAdapter = new OrderAdapter(storedDonuts);
         donutRecycleView.setAdapter(orderAdapter);
-        LinearLayoutManager currentOrderLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager currentOrderLayoutManager =
+                new LinearLayoutManager(this);
         donutRecycleView.setLayoutManager(currentOrderLayoutManager);
     }
 
@@ -134,7 +135,8 @@ public class DonutOrderActivity extends AppCompatActivity {
      */
     public void addToShoppingCart(View v) {
         if (storedDonuts.size() == 0) {
-            Toast.makeText(this, getString(R.string.empty_shopping_cart_message),
+            Toast.makeText(this,
+                    getString(R.string.empty_shopping_cart_message),
                     Toast.LENGTH_SHORT).show();
             return;
         }
@@ -146,7 +148,8 @@ public class DonutOrderActivity extends AppCompatActivity {
         orderAdapter.notifyItemRangeRemoved(0, size);
         orderAdapter.resetSelection();
         updateSubTotal();
-        Toast.makeText(this, getString(R.string.success_add_to_shopping_cart),
+        Toast.makeText(this,
+                getString(R.string.success_add_to_shopping_cart),
                 Toast.LENGTH_SHORT).show();
     }
 }

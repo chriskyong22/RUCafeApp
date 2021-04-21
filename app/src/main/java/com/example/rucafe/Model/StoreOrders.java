@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * The StoreOrders class stores a list of all orders placed and allows for
- * adding, removing, searching for, and exporting orders from this list.
+ * adding, removing, and searching for from this list.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class StoreOrders implements Customizable {
