@@ -24,24 +24,23 @@ import java.util.ArrayList;
  * StoreOrders controller to link the StoreOrders View to the StoreOrders
  * Model.
  * It updates the list view and total price upon selection and removal
- * of an order. In addition, you can export ALL stored orders to a text file.
+ * of an order.
  * @author Christopher Yong, Maya Ravichandran
  */
-
 public class StoredOrdersActivity extends AppCompatActivity {
 
     private static StoreOrders orders = new StoreOrders();
     private Button cancelOrder;
     private RecyclerView storedOrderListView;
-    private TextView totalPrice, subTotal,salesTax;
+    private TextView totalPrice, subTotal, salesTax;
     private Spinner orderComboBox;
     private OrderAdapter orderAdapter;
     private RecyclerView.LayoutManager currentOrderLayoutManager;
 
     /**
      * Initializes the views in the layout.
-     * Sets the order numbers and the recycler view and retrieves all the view references
-     * so it can be used.
+     * Sets the order numbers and the recycler view and retrieves all
+     * the view references so they can be used.
      * @param savedInstanceState savedInstanceState if provided
      */
     @Override
@@ -66,38 +65,46 @@ public class StoredOrdersActivity extends AppCompatActivity {
         orderComboBox = findViewById(R.id.storedOrderSpinner);
         updateSpinner();
         handleSelectedOrder();
-        orderComboBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        orderComboBox.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
             /**
              * EventListener for item selected in the order selection spinner.
-             * @param parent parent adapterview
+             * @param parent parent AdapterView
              * @param view view associated with the listener
              * @param position position selected
-             * @param id id
+             * @param id order id
              */
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
                 handleSelectedOrder();
             }
 
             /**
-             * EventListener for no item selected in the order selection spinner.
-             * @param parent parent adapterview
+             * EventListener for no item selected in the order selection
+             * spinner.
+             * @param parent parent AdapterView
              */
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
     }
 
     /**
-     * Updates the spinner that holds all the order numbers that were not deleted.
+     * Updates the spinner that holds all the order numbers that were
+     * not deleted.
      */
     private void updateSpinner() {
-        if(orders.getOrderNumbers() == null) {
+        if (orders.getOrderNumbers() == null) {
             orderComboBox.setAdapter(null);
             return;
         }
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(StoredOrdersActivity.this,
-                R.layout.support_simple_spinner_dropdown_item, orders.getOrderNumbers());
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
+                StoredOrdersActivity.this,
+                R.layout.support_simple_spinner_dropdown_item,
+                orders.getOrderNumbers());
         orderComboBox.setAdapter(spinnerAdapter);
     }
 
@@ -105,7 +112,7 @@ public class StoredOrdersActivity extends AppCompatActivity {
      * Handles the selection of an order in the order spinner.
      * Upon selection, it will update the order displayed in the recycler view
      * and associated total price.
-     * If there are no orders, it will generate an Toast warning the user that
+     * If there are no orders, it will generate a Toast warning the user that
      * there are no orders stored and disable all buttons.
      */
     public void handleSelectedOrder() {
@@ -117,8 +124,8 @@ public class StoredOrdersActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates the recycler view with the menu items stored in the order, the
-     * total price, sales tax, and subtotal displayed.
+     * Updates the recycler view with the menu items stored in the order,
+     * and updates the displayed total price, sales tax, and sub-total.
      * @param order the order used to display
      */
     private void updateOrderDetails(Order order) {
@@ -132,9 +139,10 @@ public class StoredOrdersActivity extends AppCompatActivity {
     }
 
     /**
-     * Used to create the adapter for the recyclerlist and update the list to display the
-     * Menuitems in the order object passed in
-     * @param order the order to create an adapter from and display in the list
+     * Used to create the adapter for the recycler list and update the
+     * list to display the MenuItems in the order object passed in.
+     * @param order the order to create an adapter from and display in
+     *              the list
      */
     public void updateList(Order order) {
         orderAdapter = new OrderAdapter(order);
@@ -145,8 +153,8 @@ public class StoredOrdersActivity extends AppCompatActivity {
 
     /**
      * Handles the checking if the stored orders has any orders.
-     * If no orders, generate a warning and disable the buttons.
-     * @return true if empty, otherwise false.
+     * If no orders, generates a warning and disables the buttons.
+     * @return true if empty, otherwise false
      */
     public boolean checkEmptyStoredOrders() {
         if (orders.getOrderNumbers() == null) {
@@ -162,23 +170,24 @@ public class StoredOrdersActivity extends AppCompatActivity {
     /**
      * Getter for the store orders object to add new orders.
      * @return StoreOrders object that represents all the orders that are
-     *         currently stored that have not been removed.
+     *         currently stored that have not been removed
      */
     public static StoreOrders getOrders() {
         return orders;
     }
 
     /**
-     * Generates an Toast that indicates the user should place some orders
+     * Generates a toast that indicates the user should place some orders
      * because there are no more stored orders.
      */
     private void generateEmptyWarning() {
         Toast.makeText(StoredOrdersActivity.this,
-                getString(R.string.empty_stored_order_message), Toast.LENGTH_SHORT).show();
+                getString(R.string.empty_stored_order_message),
+                Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * Disables the place order
+     * Disables the cancel order button.
      */
     private void disableButtons() {
         cancelOrder.setEnabled(false);
@@ -187,9 +196,9 @@ public class StoredOrdersActivity extends AppCompatActivity {
     /**
      * Handles the deletion of the current selected order in the spinner.
      * Upon deletion, it will display the order before it, and if there are no
-     * orders before it, it will display the next order. In addition, it will
-     * update the associated total price and the menu items of the
-     * order in the recycler view.
+     * orders before it, it will display the next order.
+     * In addition, it will update the associated total price and the menu
+     * items of the order in the recycler view.
      * If there are no orders after removing the current selected order, it
      * will disable all buttons and display an alert to the user informing
      * there are no more orders to display.
@@ -200,7 +209,8 @@ public class StoredOrdersActivity extends AppCompatActivity {
             return;
         }
         int selectedIndex = orderComboBox.getSelectedItemPosition();
-        Order order = orders.findOrder(Integer.parseInt((String) orderComboBox.getSelectedItem()));
+        Order order = orders.findOrder(Integer.parseInt(
+                (String) orderComboBox.getSelectedItem()));
         int size = order.getNumberOfMenuItems();
         order.clear();
         orderAdapter.notifyItemRangeRemoved(0, size);

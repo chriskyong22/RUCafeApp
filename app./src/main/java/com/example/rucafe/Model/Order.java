@@ -28,7 +28,7 @@ public class Order implements Customizable {
     }
 
     /**
-     * The add method adds an item to the order.
+     * Adds an item to the order.
      * @param obj the item to be added to the order
      * @return true if the item was added successfully, false if the item was
      *          not an instance of MenuItem
@@ -43,7 +43,7 @@ public class Order implements Customizable {
     }
 
     /**
-     * The remove method removes an item from the order.
+     * Removes an item from the order.
      * @param obj the item to be removed from the order
      * @return true if the item was removed successfully, false if the item
      *          was not an instance of MenuItem
@@ -74,8 +74,8 @@ public class Order implements Customizable {
     }
 
     /**
-     * Retrieve all the menu items
-     * @return Arraylist of menu items stored
+     * Retrieves all the menu items.
+     * @return ArrayList of menu items stored
      */
     public ArrayList<MenuItem> getItems() {
         return this.items;
@@ -95,7 +95,7 @@ public class Order implements Customizable {
      */
     public void calculateSubTotalCost() {
         this.subTotalCost = 0;
-        for(MenuItem item : items) {
+        for (MenuItem item : items) {
             item.itemPrice();
             subTotalCost += item.getItemPrice();
         }
@@ -178,6 +178,5 @@ public class Order implements Customizable {
         Order temp = (Order) obj;
         return this.orderNumber == temp.orderNumber;
     }
-
 
 }

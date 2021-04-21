@@ -62,10 +62,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/total_price"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cancelOrder"
         app:layout_constraintEnd_toStartOf="@+id/totalPriceStoredOrders"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toStartOf="parent" />
@@ -74,12 +74,12 @@
         android:id="@+id/cancelOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:onClick="handleDeleteOrder"
         android:text="@string/cancel_order"
-        app:layout_constraintBottom_toBottomOf="@+id/totalPriceStoredOrders"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/totalPriceStoredOrders"
-        app:layout_constraintTop_toTopOf="@+id/totalPriceStoredOrders" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView7"

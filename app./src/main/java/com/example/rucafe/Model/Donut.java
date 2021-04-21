@@ -16,7 +16,7 @@ public class Donut extends MenuItem {
      * The constructor for the Donut class.
      * Sets the donut's type, flavor, and quantity to the values specified
      * in the method parameters.
-     * @param donut the type and flavor of the donut
+     * @param donut the type of the donut
      * @param quantity the number of this type of donut being ordered
      */
     public Donut(String donut, int quantity) {
