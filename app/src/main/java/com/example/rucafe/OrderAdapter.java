@@ -89,7 +89,8 @@ public class OrderAdapter extends RecyclerView
                     holder.itemView.getContext().getColor(R.color.selected));
         } else {
             holder.itemDescription.setBackgroundColor(
-                    holder.itemView.getContext().getColor(R.color.unselected));
+                    holder.itemView.getContext().getColor(
+                            R.color.unselected));
         }
 
         //Event listener for item clicker on the recycler view.
